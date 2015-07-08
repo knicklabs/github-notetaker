@@ -21,29 +21,33 @@ var Profile = React.createClass({
     };
   },
 
-  init: function() {
+  init: function(){
     var childRef = this.ref.child(this.getParams().username);
     this.bindAsArray(childRef, 'notes');
 
     helpers.getGithubInfo(this.getParams().username)
-      .then(function(dataObject) {
+      .then(function(dataObj){
         this.setState({
-          bio: dataObject.bio,
-          repos: dataObject.repos
+          bio: dataObj.bio,
+          repos: dataObj.repos
         });
       }.bind(this));
   },
 
-  componentDidMount: function() {
-    this.ref = new Firebase('http://github-note-taker.firebaseio.com');
+  componentDidMount: function(){
+    this.ref = new Firebase('https://github-note-taker.firebaseio.com');
     this.init();
   },
 
-  componentWillUnmount: function() {
-    this.unbind('notes');
+  componentWillUnmount: function(){
+    try {
+      this.unbind('notes');
+    } catch(err) {
+      console.log(err);
+    }
   },
 
-  componentWillReceiveProps: function() {
+  componentWillReceiveProps: function(){
     this.unbind('notes');
     this.init();
   },
