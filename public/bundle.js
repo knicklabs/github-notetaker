@@ -23896,6 +23896,10 @@
 
 	;
 
+	NotesList.propTypes = {
+	  notes: _react2["default"].PropTypes.array.isRequired
+	};
+
 	exports["default"] = NotesList;
 	module.exports = exports["default"];
 

@@ -18,4 +18,8 @@ class NotesList extends React.Component {
   }
 };
 
+NotesList.propTypes = {
+  notes: React.PropTypes.array.isRequired
+};
+
 export default NotesList;
